@@ -14,6 +14,18 @@ package entidadesJPA;
 import java.io.Serializable;
 import javax.persistence.*;
 
+/**
+ * Entidad JPA que representa un producto del supermercado.
+ * 
+ * <p>Contiene información sobre su identificador, descripción, precio, stock y
+ * sección asociada. Cada producto está vinculado a una {@link Seccion}.</p>
+ * 
+ * <p>La clave primaria es el campo {@code idProducto}.</p>
+ * 
+ * @author IES Aguadulce
+ * @version abril/2025
+ */
+
 @Entity
 public class Producto implements Serializable {
 

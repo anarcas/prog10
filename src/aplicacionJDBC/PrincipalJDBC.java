@@ -14,6 +14,10 @@ import java.util.Scanner;
  */
 public class PrincipalJDBC {
 
+    /**
+     * Método principal de la clase PrincipalJDBC
+     * @param args Array de objetos String
+     */
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         String opcion;
