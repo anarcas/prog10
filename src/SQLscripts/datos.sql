@@ -18,7 +18,7 @@ INSERT INTO producto (id_producto,descripcion,precio,id_seccion,stock_actual) VA
 INSERT INTO producto (id_producto,descripcion,precio,id_seccion,stock_actual) VALUES ('0007','Agua con gas -Refresca más-',0.9,'03',38);
 INSERT INTO producto (id_producto,descripcion,precio,id_seccion,stock_actual) VALUES ('0008','Cepillo -Stop pelusas-',16,'04',10);
 
--- Entidad empleado
+-- Entidad empleado (datos ingresados)
 INSERT INTO empleado (id_empleado, nombre, salario_anual, id_seccion) VALUES ('0001', 'Alonso Quijano', 25000, '01');
 INSERT INTO empleado (id_empleado, nombre, salario_anual, id_seccion) VALUES ('0002', 'Aldonza Lorenzo', 28000, '02');
 INSERT INTO empleado (id_empleado, nombre, salario_anual, id_seccion) VALUES ('0003', 'Sancho Panza', 20000, '01');

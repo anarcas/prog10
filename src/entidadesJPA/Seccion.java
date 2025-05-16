@@ -14,6 +14,7 @@ import java.util.List;
  * @version abril/2025
  */
 @Entity
+@Table(name = "seccion")
 public class Seccion implements Serializable {
 
     /**
@@ -54,7 +55,8 @@ public class Seccion implements Serializable {
      * @see #getEmpleados()
      * @see #setEmpleados(List)
      */
-     //  ¡¡¡ATENCIÓN!!! Hay que definir la relación.
+    @OneToMany(mappedBy = "seccion", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Empleado> empleados; // Declaración del atributo de la lista de empleados
 
     /**
      * Constructor vacío requerido por JPA.
@@ -131,15 +133,22 @@ public class Seccion implements Serializable {
      * Devuelve la lista de empleados asociados a esta sección.
      * 
      * @return Lista de empleados
+     * @see #getEmpleados()
+     * @see #setEmpleados(List)
      */
-        //  ¡¡¡ATENCIÓN!!! Método no implementado.
-
+    public List<Empleado> getEmpleados() {
+        return empleados; // Implementación del getter
+    }
+    
+    
     /**
      * Establece la lista de empleados asociados a esta sección.
      * 
      * @param empleados Nueva lista de empleados
      */
-        //  ¡¡¡ATENCIÓN!!! Método no implementado.
+    public void setEmpleados(List<Empleado> empleados) {
+        this.empleados = empleados; // Implementación del setter
+    }
 
     /**
      * Devuelve una representación en texto de la sección.

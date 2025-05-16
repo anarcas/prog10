@@ -13,8 +13,8 @@ import java.util.Objects;
  * @author Antonio Naranjo Castillo
  * @version mayo/2025
  */
-@Entity // Marca esta clase como una entidad JPA
-@Table(name = "empleado") // Opcional: especifica el nombre de la tabla si es diferente al nombre de la clase
+@Entity // Se marca esta clase como una entidad JPA
+@Table(name = "empleado") // Se especifica el nombre de la tabla si es diferente al nombre de la clase
 public class Empleado implements Serializable {
 
     private static final long serialVersionUID = 1L; // Identificador para la serialización
@@ -23,7 +23,7 @@ public class Empleado implements Serializable {
      * Identificador único del empleado.
      * Longitud máxima: 4 caracteres.
      */
-    @Id // Marca el campo como clave primaria
+    @Id // Se marca el campo como clave primaria
     @Column(name = "id_empleado", length = 4) // Mapea a la columna id_empleado de tipo CHAR(4)
     private String idEmpleado;
 
@@ -38,7 +38,7 @@ public class Empleado implements Serializable {
      * Salario anual del empleado. No puede ser nulo.
      */
     @Column(name = "salario_anual", nullable = false) // Mapea a la columna salario_anual de tipo INT
-    private Integer salarioAnual; // Se usa Integer para consistencia con otros Integer de JPA (ej. stockActual en Producto)
+    private Integer salarioAnual; // Se usa Integer para consistencia con otros Integer de JPA
 
     /**
      * Sección a la que pertenece el empleado.
@@ -46,7 +46,7 @@ public class Empleado implements Serializable {
      * Esto indica que muchos empleados pueden pertenecer a una única sección.
      */
     @ManyToOne // Define una relación muchos-a-uno
-    @JoinColumn(name = "id_seccion", nullable = false) // Especifica la columna de clave foránea en la tabla 'empleado'
+    @JoinColumn(name = "id_seccion", nullable = false) // Se especifica la columna de clave foránea en la tabla 'empleado'
     private Seccion seccion;
 
     /**
@@ -167,23 +167,20 @@ public class Empleado implements Serializable {
      */
     @Override
     public boolean equals(Object object) {
-        // 1. Comprobación de referencia: si son el mismo objeto en memoria
+        // Comprobación de referencia, si son el mismo objeto en memoria
         if (this == object) {
             return true;
         }
 
-        // 2. Comprobación de tipo y nulidad: si el objeto es nulo o no es del mismo tipo
-        // getClass() != object.getClass() es más estricto y seguro que 'instanceof' en contextos de herencia
+        // Comprobación de tipo y nulidad, si el objeto es nulo o no es del mismo tipo
         if (object == null || getClass() != object.getClass()) {
             return false;
         }
 
-        // 3. Casteo al tipo correcto
+        // Casteo al tipo correcto
         Empleado other = (Empleado) object;
 
-        // 4. Compara por la clave primaria usando Objects.equals()
-        // Objects.equals(a, b) maneja automáticamente los casos donde 'a' o 'b' son null.
-        // Es equivalente a: (a == b) || (a != null && a.equals(b))
+        // Compara por la clave primaria
         return Objects.equals(this.idEmpleado, other.idEmpleado);
     }
 

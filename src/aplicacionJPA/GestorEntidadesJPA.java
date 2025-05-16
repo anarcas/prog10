@@ -24,6 +24,7 @@ public class GestorEntidadesJPA {
      * DAO (Data Access Object) para la entidad Seccion
      */
     private static final GestorDePersistenciaGenerico<Seccion> seccionDAO = new GestorDePersistenciaGenerico<>(Seccion.class);
+    
     /**
      * DAO (Data Access Object) para la entidad producto
      */
@@ -281,14 +282,14 @@ public class GestorEntidadesJPA {
 
         System.out.println("---------------------------------------------");
 
-        // 1. Verificar si el ID del empleado ya existe antes de intentar insertar
+        // Se verifica si el ID del empleado ya existe antes de intentar insertar
         if (empleadoDAO.buscar(idEmpleado) != null) {
             System.out.println(Color.rojo(String.format("ERROR: El empleado %s ya existe.", idEmpleado)));
             System.out.println("---------------------------------------------");
             return; // Salir del método
         }
 
-        // 2. Buscar la sección a la que pertenece el empleado
+        // Se busca la sección a la que pertenece el empleado
         Seccion seccion = seccionDAO.buscar(idSeccion);
         if (seccion == null) {
             System.out.println(Color.rojo(String.format("ERROR: La sección %s no existe. No se pudo insertar el empleado.", idSeccion)));
@@ -296,19 +297,19 @@ public class GestorEntidadesJPA {
             return; // Salir del método
         }
 
-        // 3. Crear el objeto Empleado
+        // Se crea el objeto Empleado
         Empleado empleado = new Empleado();
         empleado.setIdEmpleado(idEmpleado);
         empleado.setNombre(nombre);
         empleado.setSalarioAnual(salarioAnual);
         empleado.setSeccion(seccion); // Asignar la entidad Seccion
 
-        // 4. Usar el DAO genérico para insertar
+        // Se usa el DAO genérico para insertar
         if (empleadoDAO.insertar(empleado)) {
             System.out.println(Color.verde("OK: Empleado añadido."));
         } else {
             System.out.println(Color.rojo("ERROR: No se pudo insertar el empleado."));
-            // La lógica de error detallada (empleado existente, sección no existente) ya se gestionó arriba
+            // La lógica de error detallada (empleado existente, sección no existente) ya se implementó más arriba
         }
         System.out.println("---------------------------------------------");
     }
@@ -387,7 +388,7 @@ String idEmpleado = EntradaTeclado.cadenaLimitada("Código de empleado:", 4, 4);
             if (empleadoDAO.buscar(idEmpleado) == null) { // Comprobar si el empleado no existe
                 System.out.printf(Color.rojo("  --> El empleado %s no existe.\n"), idEmpleado);
             } else {
-                // Mensaje genérico si la eliminación falla por otra razón (ej. excepciones de la base de datos)
+                // Mensaje genérico si la eliminación falla por otra razón
                 System.out.println(Color.rojo("  --> Posible error de la base de datos o integridad referencial."));
             }
         }
@@ -410,7 +411,7 @@ String idEmpleado = EntradaTeclado.cadenaLimitada("Código de empleado:", 4, 4);
                 empleado.setNombre(nuevoNombre);
             }
 
-            // MODIFICACIÓN: Se asume que un salario de 0 es "dejar igual" si no se usa confirmación
+            // Se entiende que un salario de 0 es "dejar igual" si no se usa confirmación
             System.out.printf("Salario Anual actual: %,d€\n", empleado.getSalarioAnual());
             int nuevoSalario = EntradaTeclado.nEnteroPositivo("Nuevo Salario Anual (0 para dejar igual):");
             if (nuevoSalario != 0) { // Si el usuario introduce un valor distinto de 0, se actualiza el salario
